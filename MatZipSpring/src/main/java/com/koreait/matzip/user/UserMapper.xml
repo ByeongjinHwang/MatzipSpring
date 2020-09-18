@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- UserMapper 와 연결 -->
+<mapper namespace="com.koreait.matzip.user.UserMapper">
+	<insert id="insUser" parameterType="com.koreait.matzip.user.model.UserVO">
+		INSERT INTO t_user
+		(user_id, user_pw, salt, nm)
+		VALUES
+		(#{user_id}, #{user_pw}, #{salt}, #{nm})
+	</insert>
+</mapper>
