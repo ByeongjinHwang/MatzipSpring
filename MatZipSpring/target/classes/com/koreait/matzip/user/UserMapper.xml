@@ -2,10 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- UserMapper 와 연결 -->
 <mapper namespace="com.koreait.matzip.user.UserMapper">
-	<insert id="insUser" parameterType="com.koreait.matzip.user.model.UserVO">
+	<!-- UserVO : mybatis-allas.xml 에서 수정   -->
+	<insert id="insUser" parameterType="UserVO">
 		INSERT INTO t_user
 		(user_id, user_pw, salt, nm)
 		VALUES
 		(#{user_id}, #{user_pw}, #{salt}, #{nm})
 	</insert>
+	
+	<select id="selUser" parameterType="UserDTO" resultType="UserDMI">
+		SELECT i_user, user_id, user_pw, salt, nm, profile_img, r_dt
+		FROM t_user
+		WHERE 
+		<if test="i_user > 0"> i_user = #{i_user}</if>
+		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
+	</select>
 </mapper>

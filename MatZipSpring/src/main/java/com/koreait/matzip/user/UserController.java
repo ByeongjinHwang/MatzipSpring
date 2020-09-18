@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.matzip.Const;
 import com.koreait.matzip.ViewRef;
+import com.koreait.matzip.user.model.UserDTO;
 import com.koreait.matzip.user.model.UserVO;
 
 //@ 붙어있는건 대부분 bean등록이 된다
@@ -30,20 +31,33 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST) 
-	public String login(UserVO param) {
+	public String login(UserDTO param) {
 		int result = service.login(param);
 		
+		// 1인 로그인 성공, 2번 아이디 없음, 3번 비번 틀림
 		if(result == 1) {
 			return "redirect:/rest/map";
+		}
+		
+		if(result == 2) {
+			
 		}
 		
 		return "redirect:/user/login?err=" + result;
 	}
 	
 	@RequestMapping(value="/join", method = RequestMethod.GET) 
-	public String join(Model model, @RequestParam int err) {
+	public String join(Model model, @RequestParam(required=false, defaultValue = "0") int err) {
 		// @RequestParam : request.parameter랑 같음
-		model.addAttribute(Const.TITLE, "회원가입");
+		// required = true 면 반드시 err 값이 있어야함. (err 값이 필수가된다) (기본값이 true)
+		// defaultValue 넣어줘야함. 근데  defaultValue 있으면 required가 필요없다
+		//System.out.println("err : " + err);
+		
+		if(err > 0 ) {
+			model.addAttribute("msg", "에러가 발생하였습니다");
+		}
+		
+ 		model.addAttribute(Const.TITLE, "회원가입");
 		model.addAttribute(Const.VIEW, "user/join");
 		
 		return ViewRef.TEMP_DEFAULT;

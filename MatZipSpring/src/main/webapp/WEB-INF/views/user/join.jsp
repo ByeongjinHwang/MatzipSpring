@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <div id="sectionContainerCenter">
 	<div>
+		<div class="msg">${msg}</div>
 		<form id="frm" class="frm" action="/user/join" method="post">
 			<div id="idChkResult" class="msg"></div>
 			<div><input type="text" name="user_id" placeholder="아이디">

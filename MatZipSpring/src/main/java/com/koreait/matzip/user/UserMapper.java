@@ -2,9 +2,12 @@ package com.koreait.matzip.user;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.koreait.matzip.user.model.UserDMI;
+import com.koreait.matzip.user.model.UserDTO;
 import com.koreait.matzip.user.model.UserVO;
 
 @Mapper // UserMapper.xml(mybatis)와 연결
 public interface UserMapper {
 	public int insUser(UserVO p);
+	public UserDMI selUser(UserDTO p);
 }
