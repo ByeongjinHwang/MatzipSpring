@@ -1,0 +1,98 @@
+<스프링 기본세팅>
+
+H2 Database
+JDK 1.8
+Tomcat 8
+Eclipse + STS(Spring Tool Suite) 플러그인 설치
+
+spring 홈페이지에서
+STS가 포함된 이클립스를 받을 수 있음
+
+help - 이클립스 마켓플레이스 - STS로 검색 - Spring Tools3 Add-on INSTALL - CONFIRM
+
+스프링부트 - 스프링 세팅이 훠낙 빡세서 쉽게 만들어주는 프로그램
+
+preferences - window - spring 있으면 깔린거임
+
+스프링 프로젝트 만들기
+new - Spring legacy project - next - spring mvc project
+
+Libraries - maven dependencies 보면 라이러리가 다 들어가있음
+
+property - Project Facets 에서 - java 설정(버젼설정), runtime 설정(아파치 톰캣 설정 -> 라이브러리 추가)
+
+pron.xml 중요함
+
+maven dependencies 쪽 최신버젼 맞춰줘야함 -> 구글에 maven spring 검색해서 들어감
+
+우라가 스프링 배우는이유 : 전자정부프레임워크 때문! 근데 이 버젼은 4버젼대니까 4버젼쓰자!
+
+4버젼중 최신 : 4.3.29 -> 이걸받아서 업데이트하자!
+
+하는방법 : pron.xml 에서 수정하면됨 org.springframework-version -> 4.3.29.RELEASE로 변경하면 자동으로 다운됨
+	<properties>
+		<java-version>1.6</java-version>
+		<org.springframework-version>4.3.29.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+	</properties>
+
+
+
+프레임워크
+
+POJO - Plain Old Java Object ex)VO
+
+Bean 등록!! 생성은 컨테이너(스프링)이 직접 생성하고, 우리는 관여x
+
+IoC - Inversion of Control -  제어의 역행 ex)콜백함수
+(객체 생성을 컨테이너 맡긴다)
+
+AOP - Aspect Oriented Programming (관점지향) ex) JDBC템플릿
+
+DI(Dependency Insection) : 의존성 주입
+
+스프링은 기본적으로 싱글톤
+
+interface는 깡패다! 실수방지!
+
+factory 객체 생성 담당
+
+bean : 객체
+
+resuoarces 에서 spring bean생성
+
+스프링은 vo가 아닌이상 객체생성 하면안됨
+
+Namespaces - p체크
+
+<핵심>
+스프링에 객체생성을 맡긴다(bean 등록)
+
+
+------------------------------------------------------------------------------
+
+<스프링 세팅>
+
+https://github.com/egg0818/MatzipSpring.git
+
+1. porm.xml 에서
+<dependencies> 안에 각종 라이브러리 설치
+
+2. spring web.xml 인코딩설정
+
+3. HomeController에서 맵핑 후 hello.jsp 보기
+
+- 스프링에선 틀이 다 만들어져 있으니 view와 vo만 만들면 됨
+
+4. servlet-context.xml 봐라 (주석 참고)
+
+5. 홈컨트롤러, hello.jsp 지우기
+
+-------------------------------
+
+
+<본격적인 세팅>
+- servlet-context 세팅
+- src/main/java에 패키지 및 기초 자바 
+- mybatis.xml 생성 및 수정
