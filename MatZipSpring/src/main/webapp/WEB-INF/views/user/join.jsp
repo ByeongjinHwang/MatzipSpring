@@ -21,10 +21,8 @@
 		function chkId() {
 			const user_id = frm.user_id.value
 			
-			axios.get('/user/ajaxIdChk', {
-				params: {
-					user_id
-				} 
+			axios.post('/user/ajaxIdChk', {
+				user_id: user_id
 			}).then(function(res) {
 				console.log(res)
 				if(res.data == '2') { //아이디 없음
