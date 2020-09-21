@@ -1,6 +1,6 @@
 package com.koreait.matzip.rest.model;
 
-public class RestPARAM {
+public class RestPARAM extends RestVO {
 	private double sw_lat;
 	private double sw_lng;
 	private double ne_lat;

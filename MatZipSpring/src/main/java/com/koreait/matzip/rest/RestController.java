@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.matzip.Const;
@@ -32,6 +33,21 @@ public class RestController {
 		System.out.println("ne_lng : " + param.getNe_lng());
 		
 		return service.selRestList(param);
+	}
+	
+	@RequestMapping(value="/restReg")
+	public String restReg(Model model) {
+		model.addAttribute(Const.TITLE, "매장등록");
+		model.addAttribute(Const.VIEW, "rest/restReg");
+		
+		return ViewRef.TEMP_MENU_TEMP;
+	}
+	
+	@RequestMapping(value="/restReg", method = RequestMethod.POST)
+	public String restReg(RestPARAM param) {
+		
+		
+		return ViewRef.TEMP_MENU_TEMP;
 	}
 	
 }

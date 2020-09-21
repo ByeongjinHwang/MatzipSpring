@@ -34,8 +34,8 @@
 				<div class="mL10" id="logout"><a href="/user/logout">로그아웃</a></div>
 			</div>
 			<div id="headerRight">
-				<a href="/restaurant/restMap">지도</a>
-				<a class="mL10" href="/restaurant/restReg">등록</a>
+				<a href="/rest/map">지도</a>
+				<a class="mL10" href="/rest/restReg">등록</a>
 				<a class="mL10" href="/user/restFavorite">찜</a>
 			</div>
 		</header>
