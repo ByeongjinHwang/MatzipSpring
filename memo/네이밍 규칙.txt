@@ -8,7 +8,7 @@ VO변수명 단어 구분은 _(언더바)
 
 <MODEL>
 DMI(Domain) - select 결과용
-DTO - select parameter 용
+PARAM - select parameter 용
 VO - insert update delete 용
 
 <JAVA, DB>
