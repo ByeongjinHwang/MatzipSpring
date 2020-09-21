@@ -2,5 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- RestMapper 와 연결 -->
 <mapper namespace="com.koreait.matzip.rest.RestMapper">
-<!-- test -->
+	<select id="selRestList" parameterType="RestPARAM" resultType="RestDMI">
+		SELECT i_rest, nm, lat, lng
+		FROM t_restaurant
+		WHERE lat BETWEEN #{sw_lat} AND #{ne_lat}
+		AND lng BETWEEN #{sw_lng} AND #{ne_lng}
+	</select>
 </mapper>
