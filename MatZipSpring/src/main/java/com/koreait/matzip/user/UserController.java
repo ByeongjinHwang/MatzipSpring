@@ -5,9 +5,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.matzip.Const;
@@ -85,6 +87,15 @@ public class UserController {
 		
 		ra.addFlashAttribute("err", result);
 		return "redirect:/user/join";
+	}
+	
+	@RequestMapping(value="/ajaxIdChk", method = RequestMethod.POST)
+	// @ResponseBody 없었다면 jsp 파일을 찾았을것이다. 이거 자체가 응답이다
+	@ResponseBody
+	public String ajaxIdChk(@RequestBody UserPARAM param) {
+		System.out.println("user_id : " + param.getUser_id());
+		int result = service.login(param);
+		return String.valueOf(result);
 	}
 	
 	

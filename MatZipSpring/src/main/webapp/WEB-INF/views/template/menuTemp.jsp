@@ -40,7 +40,7 @@
 			</div>
 		</header>
 		<section>
-			<jsp:include page="/WEB-INF/view/${view}.jsp"></jsp:include>
+			<jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
 		</section>
 		<footer> 회사 정보 </footer>
 	</div>

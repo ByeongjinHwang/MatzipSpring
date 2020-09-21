@@ -6,6 +6,7 @@ public class ViewRef {
 	
 	public static final String TEMP_DEFAULT = "template/default";
 	public static final String TEMP_TYPE_1 = "template/type_1";
+	public static final String TEMP_MENU_TEMP ="template/menuTemp";
 	
 
 }
