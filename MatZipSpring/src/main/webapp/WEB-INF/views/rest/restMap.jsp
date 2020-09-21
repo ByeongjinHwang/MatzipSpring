@@ -23,7 +23,7 @@
 		var map = new kakao.maps.Map(mapContainer, options);
 		
 		function getRestaurantList() {
-			axios.get('/restaurant/ajaxGetList').then(function(res) {
+			axios.get('/rest/ajaxGetList').then(function(res) {
 				console.log(res.data)
 				
 				res.data.forEach(function(item) {					
