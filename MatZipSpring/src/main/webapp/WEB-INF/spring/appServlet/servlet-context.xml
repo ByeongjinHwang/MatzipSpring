@@ -11,6 +11,7 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
+	<context:property-placeholder location="classpath:config.properties"/>
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- annotation : 맵핑 컨트롤러 역할 -->
@@ -49,16 +50,16 @@
 		<beans:property name="connectionTestQuery"
 			value="SELECT 1 FROM DUAL" />
 		<beans:property name="driverClassName"
-			value="com.mysql.cj.jdbc.Driver" />
+			value="${db.driver}" />
 		<!-- 데이터베이스에 대한 실제 커넥션의 최대 개수를 결정 이 수치를 넘으면 getConnection() 호출은 블록킹 -->
 		<beans:property name="maximumPoolSize" value="10" />
 		<!-- 5초안에 서버연결 못하면 에러뜸 -->
 		<beans:property name="idleTimeout" value="5000" />
 		<!-- 접속정보 -->
 		<beans:property name="jdbcUrl"
-			value="jdbc:mysql://127.0.0.1:3306/matzip?useUnicode=true;characterEncoding=UTF-8" />
-		<beans:property name="username" value="root" />
-		<beans:property name="password" value="koreait2020" />
+			value="${db.url}" />
+		<beans:property name="username" value="${db.username}" />
+		<beans:property name="password" value="${db.password}" />
 	</beans:bean>
 
 

@@ -5,6 +5,6 @@
 		<!--  alias 는 별칭! -->
 		<typeAlias type="com.koreait.matzip.user.model.UserVO" alias="UserVO" />
 		<typeAlias type="com.koreait.matzip.user.model.UserDMI" alias="UserDMI" />
-		<typeAlias type="com.koreait.matzip.user.model.UserDTO" alias="UserDTO" />
+		<typeAlias type="com.koreait.matzip.user.model.UserPARAM" alias="UserPARAM" />
 	</typeAliases>
 </configuration>

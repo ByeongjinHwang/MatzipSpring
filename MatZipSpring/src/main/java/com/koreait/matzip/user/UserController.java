@@ -1,15 +1,18 @@
 package com.koreait.matzip.user;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.matzip.Const;
 import com.koreait.matzip.ViewRef;
-import com.koreait.matzip.user.model.UserDTO;
+import com.koreait.matzip.user.model.UserPARAM;
 import com.koreait.matzip.user.model.UserVO;
 
 //@ 붙어있는건 대부분 bean등록이 된다
@@ -31,19 +34,27 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST) 
-	public String login(UserDTO param) {
+	public String login(UserPARAM param, HttpSession hs, RedirectAttributes ra) {
 		int result = service.login(param);
 		
-		// 1인 로그인 성공, 2번 아이디 없음, 3번 비번 틀림
-		if(result == 1) {
+		// 1:로그인 성공, 2:아이디 없음, 3:비번 틀림
+		if(result == Const.SUCCESS) {
+			hs.setAttribute(Const.LOGIN_USER, param);
 			return "redirect:/rest/map";
 		}
 		
-		if(result == 2) {
-			
+		String msg = null;
+		if(result == Const.NO_ID) {
+			msg = "아이디를 확인해주세요.";
+		} else if(result == Const.NO_PW) {
+			msg = "비밀번호를 확인해주세요";
 		}
 		
-		return "redirect:/user/login?err=" + result;
+		param.setMsg(msg);
+		// addAttribute : 쿼리문을 날린다
+		// addFlashAttribute : 세션에 값을 넣고 지운다 (유지가 안됨)
+		ra.addFlashAttribute("data", param);
+		return "redirect:/user/login";
 	}
 	
 	@RequestMapping(value="/join", method = RequestMethod.GET) 
@@ -64,7 +75,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/join", method = RequestMethod.POST) 
-	public String join(UserVO param) {
+	public String join(UserVO param, RedirectAttributes ra) {
 		// 이름만 같다면  param에 다 값이 담김
 		int result = service.join(param);
 		
@@ -72,7 +83,8 @@ public class UserController {
 			return "redirect:/user/login";
 		}
 		
-		return "redirect:/user/join?err=" + result;
+		ra.addFlashAttribute("err", result);
+		return "redirect:/user/join";
 	}
 	
 	
