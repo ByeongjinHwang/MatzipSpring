@@ -9,6 +9,6 @@ public class RestController {
 	
 	@RequestMapping(value="/restMap")
 	public String restMap() {
-		return "";
+		return null;
 	}
 }
