@@ -1,0 +1,23 @@
+<네이밍 규칙>
+
+명사 뒤 동사 앞
+
+클래스명 : 파스칼 // 메소드명, 변수명 : 카멜 케이스 기법 사용
+사용자 정의 메소드명 앞에는 _(언더바) 붙인다.
+VO변수명 단어 구분은 _(언더바)
+
+<MODEL>
+DMI(Domain) - select 결과용
+PARAM - select parameter 용
+VO - insert update delete 용
+
+<JAVA, DB>
+(DB)
+ins
+__sel / sel_List
+upd
+del
+
+<VIEW>
+reg
+detail
