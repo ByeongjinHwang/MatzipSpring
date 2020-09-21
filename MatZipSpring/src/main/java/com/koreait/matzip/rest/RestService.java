@@ -20,4 +20,8 @@ public class RestService {
 			Gson gson = new Gson();
 			return gson.toJson(list);
 	}
+	
+	int insRest(RestPARAM param) {
+		return mapper.insRest(param);
+	}
 }

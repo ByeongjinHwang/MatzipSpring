@@ -10,7 +10,5 @@
 		<typeAlias type="com.koreait.matzip.rest.model.RestVO" alias="RestVO" />
 		<typeAlias type="com.koreait.matzip.rest.model.RestDMI" alias="RestDMI" />
 		<typeAlias type="com.koreait.matzip.rest.model.RestPARAM" alias="RestPARAM" />
-	
-	
 	</typeAliases>
 </configuration>

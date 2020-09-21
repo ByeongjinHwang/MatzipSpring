@@ -46,8 +46,9 @@ public class RestController {
 	@RequestMapping(value="/restReg", method = RequestMethod.POST)
 	public String restReg(RestPARAM param) {
 		
+		int result = service.insRest(param);
 		
-		return ViewRef.TEMP_MENU_TEMP;
+		return "redirect:/rest/restMap";
 	}
 	
 }

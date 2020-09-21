@@ -13,6 +13,7 @@
 			</div>
 			<input type="hidden" name="lat" value="0">
 			<input type="hidden" name="lng" value="0">
+			<input type="hidden" name="i_user" value="${loginUser.i_user}">
 			<div>
 				카테고리:
 				<select name="cd_category">
