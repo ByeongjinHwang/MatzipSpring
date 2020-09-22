@@ -45,6 +45,12 @@ public class RestController {
 	
 	@RequestMapping(value="/restReg", method = RequestMethod.POST)
 	public String restReg(RestPARAM param) {
+		System.out.println("nm : " + param.getNm());
+		System.out.println(("addr : " + param.getAddr()));
+		System.out.println("lat : " + param.getLat());
+		System.out.println("lng : " + param.getLng());
+		System.out.println("cd_category : " + param.getCd_category());
+		System.out.println("i_user : " + param.getI_user());
 		
 		int result = service.insRest(param);
 		

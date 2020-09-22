@@ -37,6 +37,7 @@ public class UserService {
 		param.setUser_pw(null); // 비밀번호 보안 상 이유로 null 처리함
 		param.setNm(dbUser.getNm());
 		param.setProfile_img(dbUser.getProfile_img());
+		param.setI_user(dbUser.getI_user());
 		return Const.SUCCESS;
 	}
 

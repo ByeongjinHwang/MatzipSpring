@@ -11,6 +11,6 @@
 	
 	<insert id="insRest" parameterType="RestPARAM">
 		INSERT INTO t_restaurant (nm, addr, lat, lng, cd_category, i_user)
-		VALUES (#{nm}, #{addr}, #{lat}, #{lng}, 1, #{i_user})
+		VALUES (#{nm}, #{addr}, #{lat}, #{lng}, #{cd_category}, #{i_user})
 	</insert>
 </mapper>

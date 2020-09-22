@@ -17,7 +17,7 @@
 			<div>
 				카테고리:
 				<select name="cd_category">
-					<option value="0">--선택--</option>
+					<option value="1">--선택--</option>
 					<c:forEach items="${categoryList}" var="item">
 						<option value="${item.cd}">${item.val}</option>
 					</c:forEach>
@@ -73,11 +73,12 @@
 			} else if(frm.lat.value == '0' || frm.lng.value == '0') {
 				alert('좌표값을 가져와 주세요.')
 				return false
-			} else if(frm.cd_category.value == '0') {
+			} /* else if(frm.cd_category.value == '0') {
 				alert('카테고리를 선택해주세요')
 				frm.cd_category.focus()
 				return false
 			}
+			*/
 		}
 	</script>
 </div>
