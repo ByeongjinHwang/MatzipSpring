@@ -28,6 +28,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	
 	@RequestMapping(value="/login", method = RequestMethod.GET) // RequestMethod : get, post, put, delete
 	public String login(Model model) {
 		model.addAttribute(Const.TITLE, "로그인");

@@ -77,5 +77,13 @@
 	<!-- Namespaces 에서 mybatis 체크 -->
 	<!--  dao를 찾아서 bean등록해줌 -->
 	<mybatis-spring:scan base-package="com.koreait.matzip" />
+	
+	<!-- 인터셉터 설정(로그인 안하면 메인화면 안뜨게)  -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**" />
+			<beans:bean class="com.koreait.matzip.LoginCheckInterceptor" />
+		</interceptor>
+	</interceptors>
 
 </beans:beans>

@@ -20,6 +20,7 @@
 	<div id="container">
 		<header>
 			<div id="headerLeft">
+				<c:if test="${loginUser != null}">
 					<div class="containerPImg">
 						<c:choose>
 							<c:when test="${loginUser.profile_img != null}">
@@ -32,6 +33,10 @@
 					</div>
 				<div class="mL10">${loginUser.nm}님 환영합니다.</div>
 				<div class="mL10" id="logout"><a href="/user/logout">로그아웃</a></div>
+			</c:if>
+			<c:if test="${loginUser == null}">
+				<div class="mL10" id="logout"><a href="/user/login">로그인</a></div>
+			</c:if>	
 			</div>
 			<div id="headerRight">
 				<a href="/rest/map">지도</a>

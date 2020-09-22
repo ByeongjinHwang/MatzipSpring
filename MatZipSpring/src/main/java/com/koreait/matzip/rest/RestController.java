@@ -68,12 +68,18 @@ public class RestController {
 		return "redirect:/rest/map";
 	}
 	
+	@RequestMapping(value="/restDetail", method = RequestMethod.GET)
+	public String restDetail(Model model) { 
+		model.addAttribute(Const.TITLE, "디테일");
+		model.addAttribute(Const.VIEW, "rest/restDetail");
+		return ViewRef.TEMP_MENU_TEMP;
+	}
+	
 //	@RequestMapping(value="/restDetail", method = RequestMethod.GET)
 //	public String restDetail(RestPARAM param) { 
-//		
-//		
-//		return null;
+//		model.addAttribute(Const.TITLE, "디테일");
+//		model.addAttribute(Const.VIEW, "rest/restDetail");
+//		return ViewRef.TEMP_MENU_TEMP;
 //	}
-//	
 	
 }
