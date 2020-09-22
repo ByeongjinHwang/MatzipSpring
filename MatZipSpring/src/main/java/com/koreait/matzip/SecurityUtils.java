@@ -28,6 +28,10 @@ public class SecurityUtils {
 	public static int getLoginUserPk(HttpServletRequest request) {
 		return getLoginUser(request).getI_user();
 	}
+	
+	public static int getLoginUserPk(HttpSession hs) {
+		return ((UserVO)hs.getAttribute(Const.LOGIN_USER)).getI_user();
+	}
 
 	public static String generateSalt() {
 		return BCrypt.gensalt();

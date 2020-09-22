@@ -1,5 +1,7 @@
 package com.koreait.matzip.rest;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +29,10 @@ public class RestController {
 	
 	@RequestMapping(value="/ajaxGetList")
 	@ResponseBody public String ajaxGetList(RestPARAM param) {
-		System.out.println("sw_lat : " + param.getSw_lat());
-		System.out.println("sw_lng : " + param.getSw_lng());
-		System.out.println("ne_lat : " + param.getNe_lat());
-		System.out.println("ne_lng : " + param.getNe_lng());
+//		System.out.println("sw_lat : " + param.getSw_lat());
+//		System.out.println("sw_lng : " + param.getSw_lng());
+//		System.out.println("ne_lat : " + param.getNe_lat());
+//		System.out.println("ne_lng : " + param.getNe_lng());
 		
 		return service.selRestList(param);
 	}
@@ -57,7 +59,7 @@ public class RestController {
 		
 		int result = service.insRest(param);
 		
-		return "redirect:/rest/restMap";
+		return "redirect:/rest/map";
 	}
 	
 }
