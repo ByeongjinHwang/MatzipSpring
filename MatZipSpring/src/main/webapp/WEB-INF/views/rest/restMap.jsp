@@ -14,7 +14,11 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1ab3d71d45b40c5eaec83805c9a73569"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script>
-			
+	
+		
+		var markerList = [] // 마커 리스트
+		
+		
 		const options = { //지도를 생성할 때 필요한 기본 옵션
 			center: new kakao.maps.LatLng(35.958437, 128.486084), //지도의 중심좌표.
 			level: 5 //지도의 레벨(확대, 축소 정도)
@@ -23,12 +27,17 @@
 		const map = new kakao.maps.Map(mapContainer, options);
 		
 		function getRestaurantList() {
+			// 마커 모두 지우기
+			markerList.forEach(function(marker) {
+				marker.setMap(null)
+			})
+			
 			const bounds = map.getBounds()
 			const southWest = bounds.getSouthWest()
 			const northEast = bounds.getNorthEast()
 			
-			console.log('southWest:' + southWest)
-			console.log('northEast:' + northEast)
+			//console.log('southWest:' + southWest)
+			//console.log('northEast:' + northEast)
 			
 			const sw_lat = southWest.getLat()
 			const sw_lng = southWest.getLng()
@@ -40,7 +49,7 @@
 					sw_lat, sw_lng, ne_lat, ne_lng
 				}
 			}).then(function(res) {
-				console.log(res.data)
+				//console.log(res.data)
 				
 				res.data.forEach(function(item) {					
 					createMarker(item)
@@ -48,7 +57,7 @@
 			})	
 		}
 		
-		kakao.maps.event.addListener(map, 'dragend', getRestaurantList);
+		kakao.maps.event.addListener(map, 'tilesloaded', getRestaurantList);
 		
 		
 		//마커생성
@@ -81,10 +90,13 @@
 			})
 			
 			marker.setMap(map)
+			
+			//마커 리스트에 추가
+			markerList.push(marker)
 		}
 		
 		function moveToDetail(i_rest) {
-			location.href ='/restaurant/restDetail?i_rest=' + i_rest
+			location.href ='/rest/restDetail?i_rest=' + i_rest
 		}
 		
 		

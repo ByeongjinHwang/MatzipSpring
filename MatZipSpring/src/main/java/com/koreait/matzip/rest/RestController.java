@@ -1,5 +1,7 @@
 package com.koreait.matzip.rest;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.matzip.Const;
 import com.koreait.matzip.ViewRef;
+import com.koreait.matzip.rest.model.RestDMI;
 import com.koreait.matzip.rest.model.RestPARAM;
 
 @Controller //handlerMapper 랑 비슷함
@@ -27,8 +30,11 @@ public class RestController {
 		return ViewRef.TEMP_MENU_TEMP;
 	}
 	
-	@RequestMapping(value="/ajaxGetList")
-	@ResponseBody public String ajaxGetList(RestPARAM param) {
+	// 한글 안깨지게 인코딩 설정해줘야함
+	// 자동으로 ajax 방식으로 값을 보내줌 (원래는 json 형식(string)으로 바꿔줘야 했음)
+	@RequestMapping(value="/ajaxGetList", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<RestDMI> ajaxGetList(RestPARAM param) {
 //		System.out.println("sw_lat : " + param.getSw_lat());
 //		System.out.println("sw_lng : " + param.getSw_lng());
 //		System.out.println("ne_lat : " + param.getNe_lat());
@@ -61,5 +67,13 @@ public class RestController {
 		
 		return "redirect:/rest/map";
 	}
+	
+//	@RequestMapping(value="/restDetail", method = RequestMethod.GET)
+//	public String restDetail(RestPARAM param) { 
+//		
+//		
+//		return null;
+//	}
+//	
 	
 }
