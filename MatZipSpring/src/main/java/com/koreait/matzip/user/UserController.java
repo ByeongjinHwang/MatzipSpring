@@ -27,7 +27,11 @@ public class UserController {
 	// UserService에서 빈등록이 되어있기때문에
 	@Autowired
 	private UserService service;
-	
+	@RequestMapping(value="/logout", method = RequestMethod.GET) 
+	public String login(HttpSession hs) {
+		hs.invalidate();
+		return "redirect:/rest/map";
+	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET) // RequestMethod : get, post, put, delete
 	public String login(Model model) {

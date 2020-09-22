@@ -22,7 +22,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		
 		
 		String uri = request.getRequestURI();
-		System.out.println(uri);
+//		System.out.println(uri);
 		String[] uriArr = uri.split("/");
 		
 		
@@ -32,7 +32,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 			return false;
 		}
 		
-		System.out.println("인터셉터!!");
+//		System.out.println("인터셉터!!");
 		boolean isLogout = SecurityUtils.isLogout(request);
 		
 		switch(uriArr[1]) {
