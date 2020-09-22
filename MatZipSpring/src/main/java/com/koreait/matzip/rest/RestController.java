@@ -68,9 +68,15 @@ public class RestController {
 		return "redirect:/rest/map";
 	}
 	
-	@RequestMapping(value="/restDetail", method = RequestMethod.GET)
-	public String restDetail(Model model) { 
-		model.addAttribute(Const.TITLE, "디테일");
+	@RequestMapping(value="/detail", method = RequestMethod.GET)
+	public String restDetail(RestPARAM param, Model model) { 
+		
+		RestDMI data = service.selRest(param);
+//		System.out.println("data.nm : " + data.getNm());
+//		System.out.println("data.addr : " + data.getAddr());
+		
+		model.addAttribute("data", data);
+		model.addAttribute(Const.TITLE, data.getNm());
 		model.addAttribute(Const.VIEW, "rest/restDetail");
 		return ViewRef.TEMP_MENU_TEMP;
 	}
@@ -81,5 +87,5 @@ public class RestController {
 //		model.addAttribute(Const.VIEW, "rest/restDetail");
 //		return ViewRef.TEMP_MENU_TEMP;
 //	}
-	
+
 }

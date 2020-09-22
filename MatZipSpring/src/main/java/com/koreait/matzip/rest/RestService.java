@@ -34,4 +34,8 @@ public class RestService {
 		
 		return cMapper.selCodeList(p);
 	}
+	
+	RestDMI selRest(RestPARAM param) {
+		return mapper.selRest(param);
+	}
 }

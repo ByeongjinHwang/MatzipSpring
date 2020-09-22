@@ -5,6 +5,16 @@ public class RestPARAM extends RestVO {
 	private double sw_lng;
 	private double ne_lat;
 	private double ne_lng;
+
+	
+	
+	public int getCnt_Favorite() {
+		return cnt_Favorite;
+	}
+	public void setCnt_Favorite(int cnt_Favorite) {
+		this.cnt_Favorite = cnt_Favorite;
+	}
+	private int cnt_Favorite;
 	
 	public double getSw_lat() {
 		return sw_lat;
@@ -30,5 +40,6 @@ public class RestPARAM extends RestVO {
 	public void setNe_lng(double ne_lng) {
 		this.ne_lng = ne_lng;
 	}
+	
 	
 }

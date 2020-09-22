@@ -8,6 +8,7 @@ public class RestVO {
 	double lng;
 	int cd_category;
 	int i_user;
+	int hits;
 	String r_dt;
 	String m_dt;
 	
@@ -64,6 +65,12 @@ public class RestVO {
 	}
 	public void setM_dt(String m_dt) {
 		this.m_dt = m_dt;
+	}
+	public int getHits() {
+		return hits;
+	}
+	public void setHits(int hits) {
+		this.hits = hits;
 	}
 	
 	

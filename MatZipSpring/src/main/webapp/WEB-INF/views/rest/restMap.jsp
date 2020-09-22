@@ -96,10 +96,10 @@
 		}
 		
 		function moveToDetail(i_rest) {
-			location.href ='/rest/restDetail?i_rest=' + i_rest
+			location.href = '/rest/detail?i_rest=' + i_rest
 		}
 		
-		
+		// ie 는  addEventListener 가 없어서 attachEvent 를 쓰는거임!
 		function addEvent(target, type, callback) {
 			 if (target.addEventListener) {
 			    target.addEventListener(type, callback);

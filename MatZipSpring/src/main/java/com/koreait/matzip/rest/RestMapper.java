@@ -9,6 +9,8 @@ import com.koreait.matzip.rest.model.RestPARAM;
 
 @Mapper
 public interface RestMapper {
-	public List<RestDMI> selRestList(RestPARAM param);
-	public int insRest(RestPARAM param);
+	// 인터페이스는 굳이 public 없어도됨
+	List<RestDMI> selRestList(RestPARAM param);
+	int insRest(RestPARAM param);
+	RestDMI selRest(RestPARAM param);
 }
