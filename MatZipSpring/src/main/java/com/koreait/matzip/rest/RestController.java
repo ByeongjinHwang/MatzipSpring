@@ -37,6 +37,9 @@ public class RestController {
 	
 	@RequestMapping(value="/restReg")
 	public String restReg(Model model) {
+		
+		model.addAttribute("categoryList", service.selCategoryList());
+		
 		model.addAttribute(Const.TITLE, "매장등록");
 		model.addAttribute(Const.VIEW, "rest/restReg");
 		
@@ -45,12 +48,12 @@ public class RestController {
 	
 	@RequestMapping(value="/restReg", method = RequestMethod.POST)
 	public String restReg(RestPARAM param) {
-		System.out.println("nm : " + param.getNm());
-		System.out.println(("addr : " + param.getAddr()));
-		System.out.println("lat : " + param.getLat());
-		System.out.println("lng : " + param.getLng());
-		System.out.println("cd_category : " + param.getCd_category());
-		System.out.println("i_user : " + param.getI_user());
+//		System.out.println("nm : " + param.getNm());
+//		System.out.println(("addr : " + param.getAddr()));
+//		System.out.println("lat : " + param.getLat());
+//		System.out.println("lng : " + param.getLng());
+//		System.out.println("cd_category : " + param.getCd_category());
+//		System.out.println("i_user : " + param.getI_user());
 		
 		int result = service.insRest(param);
 		
