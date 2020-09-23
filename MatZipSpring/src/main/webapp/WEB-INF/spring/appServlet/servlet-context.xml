@@ -85,7 +85,7 @@
 	<!--  Namespaces 에서 TS 체크 -->
 	<!--  빈등록! -->
 	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<beans:property name="dataSource" ref="dataSouce" />
+		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
 	
 	<!-- 인터셉터 설정(로그인 안하면 메인화면 안뜨게)  -->
