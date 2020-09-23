@@ -115,9 +115,23 @@ public class RestService {
 		
 	}
 	
-	public int delRecMenu(RestPARAM param) {
+	public int delRecMenu(RestPARAM param, String realPath) {
 		//파일 삭제
-		
+		List<RestRecMenuVO> list = mapper.selRestRecMenus(param);
+		if(list.size() == 1) {
+			RestRecMenuVO item = list.get(0);
+			
+			if(!item.getMenu_pic().equals("") && item.getMenu_pic() != null) { //이미지 있음 -> 삭제!!
+				File file = new File(realPath + item.getMenu_pic());
+				if(file.exists()) {
+					if(file.delete()) {
+						return mapper.delRecMenu(param);
+					} else {
+						return 0;
+					}
+				}
+			}
+		}
 		
 		return mapper.delRecMenu(param);
 	}

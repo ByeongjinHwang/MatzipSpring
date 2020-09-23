@@ -111,10 +111,12 @@ public class RestController {
 	
 	@RequestMapping(value="/ajaxDelRecMenu", produces="application/json; charset=utf-8")
 	@ResponseBody
-	public int ajaxDelRecMenu(RestPARAM param) {
+	public int ajaxDelRecMenu(RestPARAM param, HttpSession hs) {
 		
-		
-		return service.delRecMenu(param);
+		String path = "/resources/img/rest/" + param.getI_rest() + "/rec_menu/";
+		String realPath = hs.getServletContext().getRealPath(path);
+		param.setI_user(SecurityUtils.getLoginUserPk(hs)); // 로긴 유저pk 담기
+		return service.delRecMenu(param, realPath);
 	}
 	
 	@RequestMapping(value="/recMenus", method=RequestMethod.POST)

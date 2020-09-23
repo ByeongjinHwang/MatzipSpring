@@ -9,6 +9,12 @@ public class RestPARAM extends RestVO {
 
 	
 	
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
 	public int getCnt_Favorite() {
 		return cnt_Favorite;
 	}
