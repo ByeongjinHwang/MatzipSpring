@@ -56,8 +56,4 @@ public class RestService {
 	int delRestMenu(RestPARAM param) {
 		return mapper.delRestMenu(param);
 	}
-	
-	int delRest(RestPARAM param) {
-		return mapper.delRest(param);
-	}
 }

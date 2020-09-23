@@ -44,7 +44,7 @@ public class RestController {
 		return service.selRestList(param);
 	}
 	
-	@RequestMapping(value="/restReg")
+	@RequestMapping(value="/reg")
 	public String restReg(Model model) {
 		
 		model.addAttribute("categoryList", service.selCategoryList());
@@ -55,7 +55,7 @@ public class RestController {
 		return ViewRef.TEMP_MENU_TEMP;
 	}
 	
-	@RequestMapping(value="/restReg", method = RequestMethod.POST)
+	@RequestMapping(value="/reg", method = RequestMethod.POST)
 	public String restReg(RestPARAM param) {
 //		System.out.println("nm : " + param.getNm());
 //		System.out.println(("addr : " + param.getAddr()));
