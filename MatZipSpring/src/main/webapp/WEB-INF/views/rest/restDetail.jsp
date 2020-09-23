@@ -10,7 +10,7 @@
 			<c:if test="${loginUser.i_user == data.i_user}">
 				<button onclick="isDel()">가게 삭제</button>
 				<h2>- 추천메뉴 -</h2>
-				<form id="recFrm" action="/restaurant/addRecMenusProc"
+				<form id="recFrm" action="recMenus"
 					enctype="multipart/form-data" method="post">
 					<!-- 파일넣을때 enctype가 필요 -->
 					<div>

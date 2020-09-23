@@ -97,5 +97,10 @@
 			<beans:bean class="com.koreait.matzip.LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>
+	
+	<!-- file upload -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="5242880" /> <!-- 5MB -->
+	</beans:bean>
 
 </beans:beans>

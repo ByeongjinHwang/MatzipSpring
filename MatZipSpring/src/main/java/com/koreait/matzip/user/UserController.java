@@ -90,6 +90,7 @@ public class UserController {
 			return "redirect:/user/login";
 		}
 		
+		// addFlashAttribute : 세션에 담을 때 사용
 		ra.addFlashAttribute("err", result);
 		return "redirect:/user/join";
 	}
