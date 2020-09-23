@@ -19,6 +19,7 @@ import com.koreait.matzip.SecurityUtils;
 import com.koreait.matzip.ViewRef;
 import com.koreait.matzip.rest.model.RestDMI;
 import com.koreait.matzip.rest.model.RestPARAM;
+import com.koreait.matzip.rest.model.RestRecMenuVO;
 import com.oreilly.servlet.MultipartRequest;
 
 @Controller //handlerMapper 랑 비슷함
@@ -80,7 +81,12 @@ public class RestController {
 //		System.out.println("data.nm : " + data.getNm());
 //		System.out.println("data.addr : " + data.getAddr());
 		
+		List<RestRecMenuVO> recMenuList = service.selRestRecMenus(param);
+		
+		
+		model.addAttribute("recMenuList", recMenuList);
 		model.addAttribute("data", data);
+		model.addAttribute("css", new String[] {"restDetail"});
 		model.addAttribute(Const.TITLE, data.getNm());
 		model.addAttribute(Const.VIEW, "rest/restDetail");
 		return ViewRef.TEMP_MENU_TEMP;
@@ -103,17 +109,21 @@ public class RestController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/recMenus", method=RequestMethod.POST) // post를 안적어줘도 날라옴
-	public String recMenus(MultipartHttpServletRequest mReq, RedirectAttributes ra) {
+	@RequestMapping(value="/ajaxDelRecMenu", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public int ajaxDelRecMenu(RestPARAM param) {
 		
-			
+		
+		return service.delRecMenu(param);
+	}
+	
+	@RequestMapping(value="/recMenus", method=RequestMethod.POST)
+	public String recMenus(MultipartHttpServletRequest mReq, RedirectAttributes ra) {
+				
 		int i_rest = service.insRecMenus(mReq);
 		
-		// addAttribute : 쿼리스트링 
-		// addFlashAttribute : 세션연결 후 응답하고 나면 세션을 지운다 (dispatcher와 비슷)
 		ra.addAttribute("i_rest", i_rest);
 		return "redirect:/rest/detail";
 	}
-
 
 }

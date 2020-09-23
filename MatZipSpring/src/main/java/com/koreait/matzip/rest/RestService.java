@@ -48,6 +48,10 @@ public class RestService {
 		return mapper.selRest(param);
 	}
 	
+	List<RestRecMenuVO> selRestRecMenus(RestPARAM param) {
+		return mapper.selRestRecMenus(param);
+	}
+	
 	@Transactional // 트랜잭션 검
 	// 디폴트가 오토커밋인데, 그걸 끄고 하나하나 실행해줌, 그리고 에러가 터지면 롤백시킴.
 	// try catch가 들어있다고 보면 됨
@@ -72,7 +76,7 @@ public class RestService {
 		String[] menuNmArr = mReq.getParameterValues("menu_nm");
 		String[] menuPriceArr = mReq.getParameterValues("menu_price");
 		
-		String path = mReq.getServletContext().getRealPath("/resources/img/rest/"+ i_rest + "/rec_menu");
+		String path = mReq.getServletContext().getRealPath("/resources/img/rest/"+ i_rest + "/rec_menu/");
 		
 		List<RestRecMenuVO> list = new ArrayList();
 		
@@ -84,6 +88,7 @@ public class RestService {
 			int menu_price = CommonUtils.parseStrToInt(menuPriceArr[i]);
 			vo.setMenu_nm(menu_nm);
 			vo.setMenu_price(menu_price);
+			vo.setI_rest(i_rest);
 			
 			MultipartFile mf = fileList.get(i);
 			
@@ -92,6 +97,7 @@ public class RestService {
 				String originFileNm = mf.getOriginalFilename();
 				String ext = FileUtils.getExt(originFileNm);
 				String saveFileNm = UUID.randomUUID() + ext;
+				
 				try {
 					mf.transferTo(new File(path + saveFileNm));
 					vo.setMenu_pic(saveFileNm);
@@ -101,8 +107,19 @@ public class RestService {
 			
 		}
 		
+		for(RestRecMenuVO vo : list) {
+			mapper.insRestRecMenu(vo);
+		}
+		
 		return i_rest;
 		
+	}
+	
+	public int delRecMenu(RestPARAM param) {
+		//파일 삭제
+		
+		
+		return mapper.delRecMenu(param);
 	}
 	
 	

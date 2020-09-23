@@ -10,7 +10,7 @@
 			<c:if test="${loginUser.i_user == data.i_user}">
 				<button onclick="isDel()">가게 삭제</button>
 				<h2>- 추천메뉴 -</h2>
-				<form id="recFrm" action="recMenus"
+				<form id="recFrm" action="/rest/recMenus"
 					enctype="multipart/form-data" method="post">
 					<!-- 파일넣을때 enctype가 필요 -->
 					<div>
@@ -39,12 +39,13 @@
 			</c:if>
 
 			<div class="recMenuContainer">
-				<c:forEach items="${recommendMenuList}" var="item">
+				<c:forEach items="${recMenuList}" var="item">
 					<div class="recMenuItem" id="recMenuItem_${item.seq}">
 						<div class="pic">
 							<c:if test="${item.menu_pic != null && item.menu_pic != ''}">
 								<img alt=""
-									src="/res/img/restaurant/${data.i_rest}/${item.menu_pic}">
+									src="/res/img/rest/${data.i_rest}/rec_menu/${item.menu_pic}">
+									<!-- 서블릿 컨텍스트에서 바꿔줌 -->
 							</c:if>
 						</div>
 						<div class="info">
@@ -121,11 +122,11 @@
 <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
-	function delRecMenu(i_rest, seq) {
+	function delRecMenu(i_rest, seq, menu_pic) {
 		console.log('i_rest : ' + i_rest)
 		console.log('seq : ' + seq)
 		
-		axios.get('/restaurant/ajaxDelRecMenu', {
+		axios.get('/rest/ajaxDelRecMenu', {
 			params: {
 				// i_rest : ${data.i_rest} 가능. el식은 서버에서 자바가 쓰는거다. 자스에선 못씀
 				'i_rest': i_rest,
@@ -154,7 +155,7 @@
 		inputPrice.setAttribute('name', 'menu_price')
 		var inputPic = document.createElement('input')
 		inputPic.setAttribute("type", "file")
-		inputPic.setAttribute('name', 'menu_pic_'+idx++)
+		inputPic.setAttribute('name', 'menu_pic')
 			
 		div.append(' menu : ')
 		div.append(inputNm)

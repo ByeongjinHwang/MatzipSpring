@@ -5,6 +5,7 @@ public class RestPARAM extends RestVO {
 	private double sw_lng;
 	private double ne_lat;
 	private double ne_lng;
+	private int seq;
 
 	
 	
