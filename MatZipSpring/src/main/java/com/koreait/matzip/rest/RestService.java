@@ -1,7 +1,9 @@
 package com.koreait.matzip.rest;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.Gson;
 import com.koreait.matzip.CommonUtils;
+import com.koreait.matzip.FileUtils;
 import com.koreait.matzip.model.CodeVO;
 import com.koreait.matzip.model.CommonMapper;
 import com.koreait.matzip.rest.model.RestDMI;
@@ -69,22 +72,36 @@ public class RestService {
 		String[] menuNmArr = mReq.getParameterValues("menu_nm");
 		String[] menuPriceArr = mReq.getParameterValues("menu_price");
 		
-		String path = mReq.getSession().getServletContext().getRealPath("/resources/img/rest/"+ i_rest + "/rec_menu");
+		String path = mReq.getServletContext().getRealPath("/resources/img/rest/"+ i_rest + "/rec_menu");
 		
 		List<RestRecMenuVO> list = new ArrayList();
 		
 		for(int i=0; i<menuNmArr.length; i++) {
-			//파일 값 저장
+			RestRecMenuVO vo = new RestRecMenuVO();
+			list.add(vo);
 			
 			String menu_nm = menuNmArr[i];
 			int menu_price = CommonUtils.parseStrToInt(menuPriceArr[i]);
-			
-			RestRecMenuVO vo = new RestRecMenuVO();
 			vo.setMenu_nm(menu_nm);
 			vo.setMenu_price(menu_price);
+			
+			MultipartFile mf = fileList.get(i);
+			
+			if(mf.isEmpty()) {continue;}
+			
+				String originFileNm = mf.getOriginalFilename();
+				String ext = FileUtils.getExt(originFileNm);
+				String saveFileNm = UUID.randomUUID() + ext;
+				try {
+					mf.transferTo(new File(path + saveFileNm));
+					vo.setMenu_pic(saveFileNm);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
 		}
 		
-		return 0;
+		return i_rest;
 		
 	}
 	
