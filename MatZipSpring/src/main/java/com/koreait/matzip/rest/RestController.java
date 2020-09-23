@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.matzip.Const;
+import com.koreait.matzip.SecurityUtils;
 import com.koreait.matzip.ViewRef;
 import com.koreait.matzip.rest.model.RestDMI;
 import com.koreait.matzip.rest.model.RestPARAM;
@@ -81,11 +82,23 @@ public class RestController {
 		return ViewRef.TEMP_MENU_TEMP;
 	}
 	
-//	@RequestMapping(value="/restDetail", method = RequestMethod.GET)
-//	public String restDetail(RestPARAM param) { 
-//		model.addAttribute(Const.TITLE, "디테일");
-//		model.addAttribute(Const.VIEW, "rest/restDetail");
-//		return ViewRef.TEMP_MENU_TEMP;
-//	}
+	@RequestMapping(value="/del", method = RequestMethod.GET)
+	public String restDel(RestPARAM param, HttpSession hs) { 
+		int loginI_user = SecurityUtils.getLoginUserPk(hs);
+		param.setI_user(loginI_user);
+		int result = 1;
+		
+		// 보안상 이유로 try catch로 감싸줌 - 에러시에 쿼리문이 안뜨게
+		try {
+			service.delRestTran(param);
+		} catch(Exception e) {
+			result = 0;
+		}
+		
+		System.out.println("result : " + result);
+		return "redirect:/";
+	}
+	
+
 
 }

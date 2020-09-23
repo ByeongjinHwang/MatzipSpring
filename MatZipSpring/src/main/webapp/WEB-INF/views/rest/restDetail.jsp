@@ -92,21 +92,21 @@
 							</tr>
 							<tr>
 								<th>메뉴</th>
-								<td>	
+								<td>
 									<div class="menuList">
 										<c:if test="${fn:length(menuList) > 0}">
-										<c:forEach var="i" begin="0" end="${fn:length(menuList) > 3 ? 2 : fn:length(menuList) - 1}">
-											<div class="menuItem">
-												<img src="/res/img/restaurant/${data.i_rest}/menu/${menuList[i].menu_pic}">
-											</div>
-										</c:forEach>
-										<c:if test="${fn:length(menuList) > 3}">
-											<div class="menuItem bg_black">
-												<div class="moreCnt">
-													+${fn:length(menuList) - 3}
+											<c:forEach var="i" begin="0"
+												end="${fn:length(menuList) > 3 ? 2 : fn:length(menuList) - 1}">
+												<div class="menuItem">
+													<img
+														src="/res/img/restaurant/${data.i_rest}/menu/${menuList[i].menu_pic}">
 												</div>
-											</div>
-										</c:if>
+											</c:forEach>
+											<c:if test="${fn:length(menuList) > 3}">
+												<div class="menuItem bg_black">
+													<div class="moreCnt">+${fn:length(menuList) - 3}</div>
+												</div>
+											</c:if>
 										</c:if>
 									</div>
 								</td>
@@ -169,9 +169,12 @@
 	addRecMenu()
 		
 	function isDel() {
-		if(confirm('삭제 하시겠습니까?')) {
-			location.href= '/restaurant/restDel?i_rest=${data.i_rest}'
+			if(confirm('삭제하시겠습니까?')) {
+				location.href= '/rest/del?i_rest=${data.i_rest}' // el식임. 서버에서 값을 박아놓음
+			} else {
+				return false
+			}
 		}
-	}
+	
 </script>
 

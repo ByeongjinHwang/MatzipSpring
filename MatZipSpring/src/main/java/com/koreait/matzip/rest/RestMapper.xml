@@ -39,4 +39,31 @@
 		ON A.i_rest = D.i_rest
 		WHERE A.i_rest = #{i_rest}
 	</select>
+	
+
+	
+	<!-- 원래는 트랜잭션 걸어야함 : 여러가지 작업이지만 한 작업처럼 
+		트랜잭션의 장점 : 쿼리문을 간단하게 할수 있음 -->
+	<!--  하지만 복잡하기 때문에 여기선 수동으로함. 참조하는 테이블부터 삭제! -->
+	<delete id="delRestRecMenu" parameterType="RestPARAM">
+		DELETE A FROM t_restaurant_recommend_menu A
+		INNER JOIN t_restaurant B
+		ON A.i_rest = B.i_rest
+		WHERE B.i_rest = #{i_rest}
+		AND B.i_user = #{i_user}
+	</delete>
+	
+	<delete id="delRestMenu" parameterType="RestPARAM">
+		DELETE A FROM t_restaurant_menu A
+		INNER JOIN t_restaurant B
+		ON A.i_rest = B.i_rest
+		WHERE B.i_rest = #{i_rest}
+		AND B.i_user = #{i_user}
+	</delete>
+	
+	<delete id="delRest" parameterType="RestPARAM">
+		DELETE FROM t_restaurant
+		WHERE i_rest = #{i_rest}
+		AND i_user = #{i_user}
+	</delete>
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.koreait.matzip.model.CodeVO;
@@ -37,5 +38,26 @@ public class RestService {
 	
 	RestDMI selRest(RestPARAM param) {
 		return mapper.selRest(param);
+	}
+	
+	@Transactional // 트랜잭션 검
+	// 디폴트가 오토커밋인데, 그걸 끄고 하나하나 실행해줌, 그리고 에러가 터지면 롤백시킴.
+	// try catch가 들어있다고 보면 됨
+	public void delRestTran(RestPARAM param) {
+		mapper.delRestRecMenu(param);
+		mapper.delRestMenu(param);
+		mapper.delRest(param);
+	}
+	
+	int delRestRecMenu(RestPARAM param) {
+		return mapper.delRestRecMenu(param);
+	}
+	
+	int delRestMenu(RestPARAM param) {
+		return mapper.delRestMenu(param);
+	}
+	
+	int delRest(RestPARAM param) {
+		return mapper.delRest(param);
 	}
 }
