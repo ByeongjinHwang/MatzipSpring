@@ -88,6 +88,8 @@
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
 	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
 	<!-- 인터셉터 설정(로그인 안하면 메인화면 안뜨게)  -->
 	<interceptors>
 		<interceptor>
