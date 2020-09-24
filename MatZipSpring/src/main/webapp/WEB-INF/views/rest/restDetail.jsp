@@ -26,8 +26,7 @@
 
 				<h2>- 메뉴 -</h2>
 				<div>
-					<form id="menuFrm" action="/restaurant/addMenusProc"
-						enctype="multipart/form-data" method="post">
+					<form id="menuFrm" action="/rest/menus" enctype="multipart/form-data" method="post">
 						<input type="hidden" name="i_rest" value="${data.i_rest}">
 						<input type="file" name="menu_pic" multiple>
 						<div id="menuItem"></div>

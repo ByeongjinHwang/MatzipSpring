@@ -10,6 +10,15 @@
 		#{lng}, #{cd_category}, #{i_user})
 	</insert>
 	
+	<!-- /////////////////////////// 작업중 -->
+	<insert id="insMenus" parameterType="RestRecMenuVO">
+		INSERT INTO t_restaurant_menu
+		(i_rest, seq, menu_pic)
+		SELECT #{i_rest}, IFNULL(MAX(seq), 0)+1, #{menu_pic}
+		FROM t_restaurant_menu
+		WHERE i_rest = #{i_rest}
+	</insert>
+	
 	<insert id="insRestRecMenu" parameterType="RestRecMenuVO">
 		INSERT INTO t_restaurant_recommend_menu
 		(i_rest, seq, menu_nm, menu_price, menu_pic)
@@ -90,4 +99,6 @@
 		WHERE i_rest = #{i_rest}
 		AND i_user = #{i_user}
 	</delete>
+	
+	
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.koreait.matzip.model.RestFile;
 import com.koreait.matzip.rest.model.RestDMI;
 import com.koreait.matzip.rest.model.RestPARAM;
 import com.koreait.matzip.rest.model.RestRecMenuVO;
@@ -19,4 +20,7 @@ public interface RestMapper {
 	int delRestMenu(RestPARAM param);
 	int delRest(RestPARAM param);
 	int insRestRecMenu(RestRecMenuVO param);
+	
+	int insMenus(RestRecMenuVO mParam);
+	
 }
