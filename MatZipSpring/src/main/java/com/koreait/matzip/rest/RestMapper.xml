@@ -64,6 +64,11 @@
 			AND A.seq = #{seq}
 		</if>
 	</select>
+	
+	<select id="selRestChkUser" parameterType="Integer" resultType="Integer">
+		SELECT i_user FROM t_restaurant
+		WHERE i_rest = #{i_rest}
+	</select>
 
 	<select id="selRest" parameterType="RestPARAM"
 		resultType="RestDMI">

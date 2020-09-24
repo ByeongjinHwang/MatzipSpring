@@ -34,22 +34,15 @@ public class RestInterceptor extends HandlerInterceptorAdapter{
 				
 				int i_user = SecurityUtils.getLoginUserPk(request);	
 				
-				return _autoSuccess(i_rest, i_user);
+				boolean result = _autoSuccess(i_rest, i_user);
+				System.out.println("==== auth result : " + result);
+				return result;
 				}
 		}
 		return true;
 	}
 	
 	private boolean _autoSuccess(int i_rest, int i_user) {
-		RestPARAM param = new RestPARAM();
-		param.setI_rest(i_rest);
-		
-		RestDMI dbResult = mapper.selRest(param);
-		
-		if(dbResult == null || dbResult.getI_user() != i_user) {
-			return false;
-		}
-
-		return true;
+		return i_user == mapper.selRestChkUser(i_rest);
 	}
 }
