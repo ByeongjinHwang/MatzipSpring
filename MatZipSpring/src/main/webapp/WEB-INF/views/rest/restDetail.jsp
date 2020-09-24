@@ -122,7 +122,7 @@
 <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
-	function delRecMenu(i_rest, seq, menu_pic) {
+	function delRecMenu(i_rest, seq) {
 		console.log('i_rest : ' + i_rest)
 		console.log('seq : ' + seq)
 		

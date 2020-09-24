@@ -74,6 +74,15 @@ public class RestController {
 		return "redirect:/rest/map";
 	}
 	
+	@RequestMapping(value="/recMenus", method=RequestMethod.POST)
+	public String recMenus(MultipartHttpServletRequest mReq, RedirectAttributes ra) {
+				
+		int i_rest = service.insRecMenus(mReq);
+		
+		ra.addAttribute("i_rest", i_rest);
+		return "redirect:/rest/detail";
+	}
+	
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public String restDetail(RestPARAM param, Model model) { 
 		
@@ -119,13 +128,6 @@ public class RestController {
 		return service.delRecMenu(param, realPath);
 	}
 	
-	@RequestMapping(value="/recMenus", method=RequestMethod.POST)
-	public String recMenus(MultipartHttpServletRequest mReq, RedirectAttributes ra) {
-				
-		int i_rest = service.insRecMenus(mReq);
-		
-		ra.addAttribute("i_rest", i_rest);
-		return "redirect:/rest/detail";
-	}
+
 
 }
