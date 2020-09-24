@@ -28,11 +28,18 @@
 	height: 30px;
 }
 
-.recMenuContainer > .recMenuItem > .delIconContainer {
+.delIconContainer {
 	cursor: pointer;
 	position: absolute;
 	top: 10px;
 	right:10px;
+}
+
+.delIconContainer2 {
+	cursor: pointer;
+	position: absolute;
+	top: 0px;
+	right:3px;
 }
 
 
@@ -42,6 +49,7 @@
 }
 
 .menuList .menuItem {
+	position : relative;
 	width: 70px;
 	height: 70px;
 	color: white;
@@ -71,4 +79,4 @@
 
 #recItem button {
 	width: 20px;
-} 
+}
