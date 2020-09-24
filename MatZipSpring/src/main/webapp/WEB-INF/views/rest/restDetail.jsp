@@ -63,6 +63,7 @@
 					</div>
 				</c:forEach>
 			</div>
+			
 			<div class="restaurant-detail">
 				<div id="detail-header">
 					<div class="restaurant_title_wrap">
@@ -143,9 +144,9 @@
 	
 	
 	var idx = 0;
-	
 	function addRecMenu() {
 		var div = document.createElement('div')
+		div.setAttribute('id', 'recMenu_' + idx++)
 			
 		var inputNm = document.createElement('input')
 		inputNm.setAttribute("type", "text")
@@ -153,16 +154,24 @@
 		var inputPrice = document.createElement('input')
 		inputPrice.setAttribute("type", "number")
 		inputPrice.setAttribute('name', 'menu_price')
+		inputPrice.value = '0'
 		var inputPic = document.createElement('input')
 		inputPic.setAttribute("type", "file")
 		inputPic.setAttribute('name', 'menu_pic')
+		var delBtn = document.createElement('button')
+		delBtn.setAttribute('type', 'button')
+		delBtn.setAttribute('value', '삭제')
+		delBtn.addEventListener('click', function() {
+			div.remove()
+		})
 			
-		div.append(' menu : ')
+		div.append(' 메뉴 : ')
 		div.append(inputNm)
-		div.append(' price : ')
+		div.append(' 가격 : ')
 		div.append(inputPrice)
-		div.append(' photo : ')
+		div.append(' 사진 : ')
 		div.append(inputPic)
+		div.append(delBtn)
 			
 		recItem.append(div)
 	}

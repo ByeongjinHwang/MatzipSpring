@@ -68,3 +68,7 @@
 .restaurant-detail {
 	padding: 5px 0 10px 0;
 }
+
+#recItem button {
+	width: 20px;
+} 
