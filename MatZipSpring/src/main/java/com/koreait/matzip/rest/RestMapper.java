@@ -14,6 +14,8 @@ public interface RestMapper {
 	// 인터페이스는 굳이 public abstract가 생략되어있음
 	List<RestDMI> selRestList(RestPARAM param);
 	List<RestRecMenuVO> selRestRecMenus(RestPARAM param);
+	List<RestRecMenuVO> selRestMenus(RestPARAM param);
+	
 	int insRest(RestPARAM param);
 	RestDMI selRest(RestPARAM param);
 	int delRestRecMenu(RestPARAM param);
@@ -22,5 +24,6 @@ public interface RestMapper {
 	int insRestRecMenu(RestRecMenuVO param);
 	
 	int insMenus(RestRecMenuVO mParam);
+
 	
 }

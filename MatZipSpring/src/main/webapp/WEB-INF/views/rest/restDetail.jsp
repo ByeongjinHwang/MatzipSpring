@@ -158,9 +158,9 @@
 		var inputPic = document.createElement('input')
 		inputPic.setAttribute("type", "file")
 		inputPic.setAttribute('name', 'menu_pic')
-		var delBtn = document.createElement('button')
+		var delBtn = document.createElement('input')
 		delBtn.setAttribute('type', 'button')
-		delBtn.setAttribute('value', '삭제')
+		delBtn.setAttribute('value', 'X')
 		delBtn.addEventListener('click', function() {
 			div.remove()
 		})

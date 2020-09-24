@@ -49,6 +49,21 @@
 			AND A.seq = #{seq}
 		</if>
 	</select>
+	
+	<!-- ///////////////////////////// -->
+	<select id="selRestMenus" parameterType="RestPARAM" resultType="RestRecMenuVO">
+		SELECT A.seq, A.menu_pic
+		FROM t_restaurant_menu A
+		<if test="i_user > 0">
+			INNER JOIN t_restaurant B
+			ON A.i_rest = B.i_rest
+			AND B.i_user = #{i_user}
+		</if>
+		WHERE A.i_rest = #{i_rest}
+		<if test="seq > 0">
+			AND A.seq = #{seq}
+		</if>
+	</select>
 
 	<select id="selRest" parameterType="RestPARAM"
 		resultType="RestDMI">

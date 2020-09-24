@@ -89,11 +89,11 @@ public class RestController {
 	public String restDetail(RestPARAM param, Model model) { 
 		
 		RestDMI data = service.selRest(param);
-//		System.out.println("data.nm : " + data.getNm());
-//		System.out.println("data.addr : " + data.getAddr());
 		
 		List<RestRecMenuVO> recMenuList = service.selRestRecMenus(param);
 		
+		List<RestRecMenuVO> menuList = service.selRestMenus(param);
+		model.addAttribute("menuList", menuList);
 		
 		model.addAttribute("recMenuList", recMenuList);
 		model.addAttribute("data", data);
@@ -142,7 +142,4 @@ public class RestController {
 		
 		return "redirect:/rest/detail?i_rest=" + param.getI_rest();
 	}
-	
-
-
 }

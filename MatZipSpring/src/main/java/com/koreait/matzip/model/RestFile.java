@@ -1,10 +1,11 @@
 package com.koreait.matzip.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class RestFile {
+public class RestFile implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int i_rest;

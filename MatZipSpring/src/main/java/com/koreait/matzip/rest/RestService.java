@@ -55,6 +55,12 @@ public class RestService {
 	List<RestRecMenuVO> selRestRecMenus(RestPARAM param) {
 		return mapper.selRestRecMenus(param);
 	}
+	
+	public List<RestRecMenuVO> selRestMenus(RestPARAM param) {
+		
+		return mapper.selRestMenus(param);
+	}
+
 
 	@Transactional // 트랜잭션 검
 	// 디폴트가 오토커밋인데, 그걸 끄고 하나하나 실행해줌, 그리고 에러가 터지면 롤백시킴.
@@ -204,4 +210,5 @@ public class RestService {
 		
 		return false;
 	}
+	
 }
