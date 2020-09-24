@@ -28,6 +28,7 @@
 				<div>
 					<form id="menuFrm" action="/rest/menus" enctype="multipart/form-data" method="post">
 						<input type="hidden" name="i_rest" value="${data.i_rest}">
+						<input type="hidden" name="i_user" value="${loginUser.i_user}">
 						<input type="file" name="menu_pic" multiple>
 						<div id="menuItem"></div>
 						<div>

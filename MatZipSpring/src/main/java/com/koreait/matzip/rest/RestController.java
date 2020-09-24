@@ -131,14 +131,14 @@ public class RestController {
 	}
 	
 	@RequestMapping("/menus")
-	public String menus(@ModelAttribute RestFile param, MultipartHttpServletRequest mReq) {
+	public String menus(@ModelAttribute RestFile param, int i_user, MultipartHttpServletRequest mReq) {
 		
 		for(MultipartFile file : param.getMenu_pic()) {
 			System.out.println("fileNm : " + file.getOriginalFilename());
 		}
 		System.out.println("i_rest : " + param.getI_rest());
 		
-		service.insMenus(param, mReq);
+		service.insMenus(param, i_user, mReq);
 		
 		return "redirect:/rest/detail?i_rest=" + param.getI_rest();
 	}

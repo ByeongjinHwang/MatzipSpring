@@ -14,7 +14,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.Gson;
 import com.koreait.matzip.CommonUtils;
+import com.koreait.matzip.Const;
 import com.koreait.matzip.FileUtils;
+import com.koreait.matzip.SecurityUtils;
 import com.koreait.matzip.model.CodeVO;
 import com.koreait.matzip.model.CommonMapper;
 import com.koreait.matzip.model.RestFile;
@@ -72,8 +74,14 @@ public class RestService {
 	}
 
 	public int insRecMenus(MultipartHttpServletRequest mReq) {
-
+		int i_user = SecurityUtils.getLoginUserPk(mReq.getSession());
 		int i_rest = Integer.parseInt(mReq.getParameter("i_rest"));
+		
+		
+		if(_authFail(i_rest, i_user)) {
+			return Const.FAIL;
+		}
+		
 		List<MultipartFile> fileList = mReq.getFiles("menu_pic");
 		String[] menuNmArr = mReq.getParameterValues("menu_nm");
 		String[] menuPriceArr = mReq.getParameterValues("menu_price");
@@ -140,8 +148,13 @@ public class RestService {
 		return mapper.delRestRecMenu(param);
 	}
 
-	public int insMenus(@ModelAttribute RestFile param, MultipartHttpServletRequest mReq) {
+	public int insMenus(@ModelAttribute RestFile param, int i_user, MultipartHttpServletRequest mReq) {
 		int i_rest = param.getI_rest();
+		
+		if(_authFail(i_rest, i_user)) {
+			return Const.FAIL;
+		}
+		
 		List<MultipartFile> fileList = param.getMenu_pic();
 		
 		String path = mReq.getServletContext().getRealPath("/resources/img/rest/" + i_rest + "/menu/");
@@ -177,5 +190,18 @@ public class RestService {
 		
 		return i_rest;
 
+	}
+	
+	//장난질 못하게!! (내가 쓴 글이 아니면 글을 못올림)
+	private boolean _authFail(int i_rest, int i_user) {
+		RestPARAM param = new RestPARAM();
+		param.setI_rest(i_rest);
+		
+		RestDMI dbResult = mapper.selRest(param);
+		if(dbResult == null || dbResult.getI_user() != i_user) {
+			return true;
+		}
+		
+		return false;
 	}
 }
