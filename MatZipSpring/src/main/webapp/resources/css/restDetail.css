@@ -118,3 +118,20 @@
 	z-index: 20;
 	overflow: auto;
 }
+.swiper-container 
+.swiper-wrapper 
+.swiper-slide {
+	display: flex;
+    justify-content: center;
+    align-items: center;	
+}    
+
+.swiper-container 
+.swiper-wrapper 
+.swiper-slide
+img {
+	width: 100%;
+	overflow: hidden;
+}
+
+

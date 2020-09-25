@@ -106,31 +106,20 @@
 		</div>
 	</div>
 </div>
-<div id="carouselContainer" class="padeShow">
+<div id="carouselContainer">
 	<div id="imgContainer">
 		<div class="swiper-container">
-			<!-- Additional required wrapper -->
-			<div class="swiper-wrapper">
-				<!-- Slides -->
-				<div class="swiper-slide">Slide 1</div>
-				<div class="swiper-slide">Slide 2</div>
-				<div class="swiper-slide">Slide 3</div>
-				...
+			<div id="swiperWrapper" class="swiper-wrapper">
 			</div>
 			<!-- If we need pagination -->
 			<div class="swiper-pagination"></div>
-
+			
 			<!-- If we need navigation buttons -->
 			<div class="swiper-button-prev"></div>
 			<div class="swiper-button-next"></div>
-
-			<!-- If we need scrollbar -->
-			<div class="swiper-scrollbar"></div>
 		</div>
 	</div>
-	<div>
-		<span class="material-icons" onclick="closeCarousel()">clear</span>
-	</div>
+	<span class="material-icons" onclick="closeCarousel()">clear</span>
 </div>
 <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -144,7 +133,8 @@ function openCarousel() {
 	carouselContainer.style.opacity = 1
 	carouselContainer.style.zIndex = 40
 }
-function makeCarousel() {
+
+
 var mySwiper = new Swiper('.swiper-container', {
 	  // Optional parameters
 	  direction: 'horizontal',
@@ -166,10 +156,6 @@ var mySwiper = new Swiper('.swiper-container', {
 	    el: '.swiper-scrollbar',
 	  },
 	})
-}
-
-makeCarousel()
-///////////////////////////////////////	
 
 var menuList = []
 
@@ -186,6 +172,7 @@ function ajaxSelMenuList() {
 
 function refreshMenu() {
 	conMenuList.innerHTML = ''
+	swiperWrapper.innerHTML = ''
 	menuList.forEach(function(item, idx) {
 		makeMenuItem(item, idx)
 	})
@@ -199,7 +186,18 @@ function makeMenuItem(item, idx) {
 	img.setAttribute('src', `/res/img/rest/${data.i_rest}/menu/\${item.menu_pic}`)
 	img.style.cursor = 'pointer'
 	img.addEventListener('click', openCarousel)
-	div.append(img)
+	
+		const swiperDiv = document.createElement('div')
+		swiperDiv.setAttribute('class', 'swiper-slide')
+		
+		const swiperImg = document.createElement('img')
+		swiperImg.setAttribute('src', `/res/img/rest/${data.i_rest}/menu/\${item.menu_pic}`)
+		
+		swiperDiv.append(swiperImg)
+		
+		mySwiper.appendSlide(swiperDiv);
+		
+		div.append(img)
 	
 	<c:if test="${loginUser.i_user == data.i_user}">
 		const delDiv = document.createElement('div')
