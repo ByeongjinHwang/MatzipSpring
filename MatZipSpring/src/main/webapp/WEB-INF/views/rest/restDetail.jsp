@@ -129,7 +129,8 @@ function closeCarousel() {
 	carouselContainer.style.zIndex = -10
 }
 
-function openCarousel() {
+function openCarousel(idx) {
+	mySwiper.slideTo(idx);
 	carouselContainer.style.opacity = 1
 	carouselContainer.style.zIndex = 40
 }
@@ -186,6 +187,9 @@ function makeMenuItem(item, idx) {
 	img.setAttribute('src', `/res/img/rest/${data.i_rest}/menu/\${item.menu_pic}`)
 	img.style.cursor = 'pointer'
 	img.addEventListener('click', openCarousel)
+	img.addEventListener('click', function() {
+			openCarousel(idx + 1)
+		})
 	
 		const swiperDiv = document.createElement('div')
 		swiperDiv.setAttribute('class', 'swiper-slide')
