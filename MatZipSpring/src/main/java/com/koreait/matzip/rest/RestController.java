@@ -73,7 +73,7 @@ public class RestController {
 		
 		int result = service.insRest(param);
 		
-		return "redirect:/rest/map";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/recMenus", method=RequestMethod.POST)
@@ -93,7 +93,7 @@ public class RestController {
 		List<RestRecMenuVO> recMenuList = service.selRestRecMenus(param);
 		
 		List<RestRecMenuVO> menuList = service.selRestMenus(param);
-		model.addAttribute("menuList", menuList);
+//		model.addAttribute("menuList", menuList);
 		
 		model.addAttribute("recMenuList", recMenuList);
 		model.addAttribute("data", data);
@@ -101,6 +101,14 @@ public class RestController {
 		model.addAttribute(Const.TITLE, data.getNm());
 		model.addAttribute(Const.VIEW, "rest/restDetail");
 		return ViewRef.TEMP_MENU_TEMP;
+	}
+	
+	@RequestMapping(value="/ajaxSelMenuList")
+	@ResponseBody
+	public List<RestRecMenuVO> ajaxSelMenuList(RestPARAM param) { 
+		
+		
+		return service.selRestMenus(param);
 	}
 	
 	@RequestMapping(value="/del", method = RequestMethod.GET)
@@ -122,12 +130,18 @@ public class RestController {
 	
 	@RequestMapping(value="/ajaxDelRecMenu", produces="application/json; charset=utf-8")
 	@ResponseBody
-	public int ajaxDelRecMenu(RestPARAM param, HttpSession hs) {
+	public int ajaxDelRecMenu(RestPARAM param, HttpSession hs) { 
 		
 		String path = "/resources/img/rest/" + param.getI_rest() + "/rec_menu/";
 		String realPath = hs.getServletContext().getRealPath(path);
 		param.setI_user(SecurityUtils.getLoginUserPk(hs)); // 로긴 유저pk 담기
-		return service.delRecMenu(param, realPath);
+		return service.delRestRecMenu(param, realPath);
+	}
+	
+	@RequestMapping(value="/ajaxDelMenu")
+	@ResponseBody
+	public int ajaxDelMenu(RestPARAM param) { // i_rest, seq, menu_pic 다 보냄
+		return service.delRestMenu(param);
 	}
 	
 	@RequestMapping("/menus")

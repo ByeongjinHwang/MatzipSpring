@@ -47,7 +47,7 @@ public class UserController {
 		// 1:로그인 성공, 2:아이디 없음, 3:비번 틀림
 		if(result == Const.SUCCESS) {
 			hs.setAttribute(Const.LOGIN_USER, param);
-			return "redirect:/rest/map";
+			return "redirect:/";
 		}
 		
 		String msg = null;

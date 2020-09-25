@@ -17,4 +17,13 @@ public class FileUtils {
 		return fileNm.substring(fileNm.lastIndexOf("."));
 	}
 	
+	public static boolean delFile(String path) {
+		File file = new File(path);
+		if(file.exists()) {
+			return file.delete();
+		}
+		
+		return false;
+	}
+	
 }

@@ -98,8 +98,8 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/rest/*" />
-			<beans:bean class="com.koreait.matzip.RestInterceptor"></beans:bean>
+			<mapping path="/rest/*"/>			
+			<beans:bean class="com.koreait.matzip.RestInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

@@ -76,6 +76,16 @@ public class RestService {
 	}
 
 	int delRestMenu(RestPARAM param) {
+		if(param.getMenu_pic() != null && "".equals(param.getMenu_pic())) {
+			String path = Const.realPath + "/resources/img/rest/" + param.getI_rest() + "/menu/";
+			
+			if(FileUtils.delFile(path + param.getMenu_pic())) {
+				return mapper.delRestMenu(param);
+			} else {
+				return Const.FAIL;
+			}
+		}
+		
 		return mapper.delRestMenu(param);
 	}
 
@@ -133,7 +143,7 @@ public class RestService {
 
 	}
 
-	public int delRecMenu(RestPARAM param, String realPath) {
+	public int delRestRecMenu(RestPARAM param, String realPath) {
 		// 파일 삭제
 		List<RestRecMenuVO> list = mapper.selRestRecMenus(param);
 		if (list.size() == 1) {
@@ -153,6 +163,7 @@ public class RestService {
 
 		return mapper.delRestRecMenu(param);
 	}
+	
 
 	public int insMenus(@ModelAttribute RestFile param, int i_user, MultipartHttpServletRequest mReq) {
 		int i_rest = param.getI_rest();

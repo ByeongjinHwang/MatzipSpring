@@ -15,7 +15,7 @@ public class RestInterceptor extends HandlerInterceptorAdapter{
 	@Autowired
 	private RestMapper mapper;
 	
-	@Override
+	@Override // 컨테이너 가기전에 preHandle에서 처리해줌
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 			
 		System.out.println("rest - interceptor");
@@ -32,13 +32,14 @@ public class RestInterceptor extends HandlerInterceptorAdapter{
 					return false;
 				}
 				
-				int i_user = SecurityUtils.getLoginUserPk(request);	
+				int i_user = SecurityUtils.getLoginUserPk(request);	// 로그인 한 사람의 i_user
 				
 				boolean result = _autoSuccess(i_rest, i_user);
 				System.out.println("==== auth result : " + result);
 				return result;
 				}
 		}
+		System.out.println("==== auth result : " + true);
 		return true;
 	}
 	
