@@ -26,7 +26,8 @@
 
 				<h2>- 메뉴 -</h2>
 				<div>
-					<form id="menuFrm" action="/rest/menus" enctype="multipart/form-data" method="post">
+					<form id="menuFrm" action="/rest/menus"
+						enctype="multipart/form-data" method="post">
 						<input type="hidden" name="i_rest" value="${data.i_rest}">
 						<input type="hidden" name="i_user" value="${loginUser.i_user}">
 						<input type="file" name="menu_pic" multiple>
@@ -45,7 +46,7 @@
 							<c:if test="${item.menu_pic != null && item.menu_pic != ''}">
 								<img alt=""
 									src="/res/img/rest/${data.i_rest}/rec_menu/${item.menu_pic}">
-									<!-- 서블릿 컨텍스트에서 바꿔줌 -->
+								<!-- 서블릿 컨텍스트에서 바꿔줌 -->
 							</c:if>
 						</div>
 						<div class="info">
@@ -63,7 +64,7 @@
 					</div>
 				</c:forEach>
 			</div>
-			
+
 			<div class="restaurant-detail">
 				<div id="detail-header">
 					<div class="restaurant_title_wrap">
@@ -95,8 +96,7 @@
 							<tr>
 								<th>메뉴</th>
 								<td>
-									<div id="conMenuList" class="menuList">
-									</div>
+									<div id="conMenuList" class="menuList"></div>
 								</td>
 							</tr>
 						</tbody>
@@ -106,8 +106,70 @@
 		</div>
 	</div>
 </div>
+<div id="carouselContainer" class="padeShow">
+	<div id="imgContainer">
+		<div class="swiper-container">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				<div class="swiper-slide">Slide 1</div>
+				<div class="swiper-slide">Slide 2</div>
+				<div class="swiper-slide">Slide 3</div>
+				...
+			</div>
+			<!-- If we need pagination -->
+			<div class="swiper-pagination"></div>
+
+			<!-- If we need navigation buttons -->
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+
+			<!-- If we need scrollbar -->
+			<div class="swiper-scrollbar"></div>
+		</div>
+	</div>
+	<div>
+		<span class="material-icons" onclick="closeCarousel()">clear</span>
+	</div>
+</div>
 <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+function closeCarousel() {
+	carouselContainer.style.opacity = 0
+	carouselContainer.style.zIndex = -10
+}
+
+function openCarousel() {
+	carouselContainer.style.opacity = 1
+	carouselContainer.style.zIndex = 40
+}
+function makeCarousel() {
+var mySwiper = new Swiper('.swiper-container', {
+	  // Optional parameters
+	  direction: 'horizontal',
+	  loop: true,
+	
+	  // If we need pagination
+	  pagination: {
+	    el: '.swiper-pagination',
+	  },
+	
+	  // Navigation arrows
+	  navigation: {
+	    nextEl: '.swiper-button-next',
+	    prevEl: '.swiper-button-prev',
+	  },
+	
+	  // And if we need scrollbar
+	  scrollbar: {
+	    el: '.swiper-scrollbar',
+	  },
+	})
+}
+
+makeCarousel()
+///////////////////////////////////////	
 
 var menuList = []
 
@@ -135,7 +197,8 @@ function makeMenuItem(item, idx) {
 	
 	const img = document.createElement('img')
 	img.setAttribute('src', `/res/img/rest/${data.i_rest}/menu/\${item.menu_pic}`)
-	
+	img.style.cursor = 'pointer'
+	img.addEventListener('click', openCarousel)
 	div.append(img)
 	
 	<c:if test="${loginUser.i_user == data.i_user}">

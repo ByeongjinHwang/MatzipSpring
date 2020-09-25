@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>${title}</title>
-<link rel="stylesheet" type="text/css" href="/res/css/common.css">
+<link rel="stylesheet" type="text/css" href="/res/css/common.css?sdf=242353">
+
 <c:if test="${css != null}">
 	<c:forEach items="${css}" var="item">
 		<link rel="stylesheet" type="text/css" href="/res/css/${item}.css">

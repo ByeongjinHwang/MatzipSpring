@@ -97,7 +97,7 @@ public class RestController {
 		
 		model.addAttribute("recMenuList", recMenuList);
 		model.addAttribute("data", data);
-		model.addAttribute("css", new String[] {"restDetail"});
+		model.addAttribute("css", new String[] {"restDetail", "swiper-bundle.min"});
 		model.addAttribute(Const.TITLE, data.getNm());
 		model.addAttribute(Const.VIEW, "rest/restDetail");
 		return ViewRef.TEMP_MENU_TEMP;
