@@ -3,14 +3,14 @@ package com.koreait.matzip.rest.model;
 public class RestDMI extends RestVO {
 	private String cd_category_nm;
 	private String user_nm;
-	private int cnt_Favorite;
-	
-	
-	public int getCnt_Favorite() {
-		return cnt_Favorite;
+	private int cnt_favorite;
+	private int is_favorite;
+		
+	public int getIs_favorite() {
+		return is_favorite;
 	}
-	public void setCnt_Favorite(int cnt_Favorite) {
-		this.cnt_Favorite = cnt_Favorite;
+	public void setIs_favorite(int is_favorite) {
+		this.is_favorite = is_favorite;
 	}
 	public String getCd_category_nm() {
 		return cd_category_nm;
@@ -23,5 +23,11 @@ public class RestDMI extends RestVO {
 	}
 	public void setUser_nm(String user_nm) {
 		this.user_nm = user_nm;
+	}
+	public int getCnt_favorite() {
+		return cnt_favorite;
+	}
+	public void setCnt_favorite(int cnt_favorite) {
+		this.cnt_favorite = cnt_favorite;
 	}
 }

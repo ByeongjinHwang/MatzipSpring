@@ -6,8 +6,15 @@ public class RestRecMenuVO {
 	private String menu_nm;
 	private int menu_price;
 	private String menu_pic;
+	
 	private int i_user;
 	
+	public int getI_user() {
+		return i_user;
+	}
+	public void setI_user(int i_user) {
+		this.i_user = i_user;
+	}
 	public int getI_rest() {
 		return i_rest;
 	}
@@ -38,10 +45,6 @@ public class RestRecMenuVO {
 	public void setMenu_pic(String menu_pic) {
 		this.menu_pic = menu_pic;
 	}
-	public int getI_user() {
-		return i_user;
-	}
-	public void setI_user(int i_user) {
-		this.i_user = i_user;
-	}
+	
+	
 }

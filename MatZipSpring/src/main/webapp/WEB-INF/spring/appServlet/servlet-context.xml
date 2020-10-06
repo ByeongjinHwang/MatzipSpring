@@ -11,90 +11,57 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
-		infrastructure -->
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	<context:property-placeholder location="classpath:config.properties"/>
-
+	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- annotation : 맵핑 컨트롤러 역할 -->
-	<annotation-driven />
+	<annotation-driven>
+	</annotation-driven>
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
-		up static resources in the ${webappRoot}/resources directory -->
-	<!-- 리소스 맵핑 역할 -->
-	<!-- 이름 줄일 수 있음 -->
-	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/res/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
-		in the /WEB-INF/views directory -->
-	<beans:bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-
-	<!-- 역할 : component 및 annotation -->
-	<!-- annotation : 맵핑 컨트롤러 역할 -->
-	<!--  @컨트롤러 @서비스 @오토와이어드 다 찾아서 bean등록 해줌 -->
-	<context:component-scan
-		base-package="com.koreait.matzip" />
-
-
-	<!-- beans:property : setter 값을 넣음 -->
-	<!-- CP(Connection Pool) : 미리 Connection을 많이 만들어서 사용한다 : 여러명이 사용할때 서버 퍼포먼스를 
-		좋아지게 만듬 -->
-	<!-- db연결 (히카리) -->
-	<beans:bean id="hikariConfig"
-		class="com.zaxxer.hikari.HikariConfig">
-		<beans:property name="poolName" value="springHikariCP" />
-		<!-- 커넥션이 유효한지 검사할 때 사용할 쿼리를 지정 -->
-		<beans:property name="connectionTestQuery"
-			value="SELECT 1 FROM DUAL" />
-		<beans:property name="driverClassName"
-			value="${db.driver}" />
-		<!-- 데이터베이스에 대한 실제 커넥션의 최대 개수를 결정 이 수치를 넘으면 getConnection() 호출은 블록킹 -->
-		<beans:property name="maximumPoolSize" value="10" />
-		<!-- 5초안에 서버연결 못하면 에러뜸 -->
-		<beans:property name="idleTimeout" value="5000" />
-		<!-- 접속정보 -->
-		<beans:property name="jdbcUrl"
-			value="${db.url}" />
-		<beans:property name="username" value="${db.username}" />
-		<beans:property name="password" value="${db.password}" />
+	
+	<context:component-scan base-package="com.koreait.matzip" />
+	
+	<beans:bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	    <beans:property name="poolName" value="springHikariCP" />
+	    <beans:property name="connectionTestQuery" value="SELECT 1 FROM DUAL" />
+	    <beans:property name="driverClassName" value="${db.driver}" />
+	    <beans:property name="maximumPoolSize" value="10" />
+	    <beans:property name="idleTimeout" value="5000" />
+	    
+	    <beans:property name="jdbcUrl" value="${db.url}"/>
+		<beans:property name="username" value="${db.username}"/>
+		<beans:property name="password" value="${db.password}"/>
 	</beans:bean>
-
-
-	<!-- beans:constructor-arg : 생정자를 통해 값을 넣음 -->
-	<beans:bean id="dataSource"
-		class="com.zaxxer.hikari.HikariDataSource" destroy-method="close"> <!-- HDS 눌러서 컨트롤 + 스페이스 하면 자동완성 -->
-		<beans:constructor-arg ref="hikariConfig" />
+	
+	<beans:bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+	    <beans:constructor-arg ref="hikariConfig" />
 	</beans:bean>
-
+	
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<beans:property name="dataSource" ref="dataSource" />
-		<beans:property name="configLocation" value="/WEB-INF/spring/mybatis-alias.xml" />
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="configLocation" value="/WEB-INF/spring/mybatis-alias.xml"/>
 	</beans:bean>
 	
-	<!-- Namespaces 에서 mybatis 체크 -->
-	<!--  dao를 찾아서 bean등록해줌 -->
-	<mybatis-spring:scan base-package="com.koreait.matzip" />
+	<mybatis-spring:scan base-package="com.koreait.matzip"/>	
 	
-	
-	<!--  트랜잭션 추가  -->
-	<!--  Namespaces 에서 TS 체크 -->
-	<!--  빈등록! -->
 	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
-	
+
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	
-	<!-- 인터셉터 설정(로그인 안하면 메인화면 안뜨게)  -->
+
 	<interceptors>
 		<interceptor>
-			<mapping path="/**" />
-			<beans:bean class="com.koreait.matzip.LoginCheckInterceptor" />
+			<mapping path="/**"/>			
+			<beans:bean class="com.koreait.matzip.LoginCheckInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
@@ -103,9 +70,27 @@
 		</interceptor>
 	</interceptors>
 	
-	<!-- file upload -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="5242880" /> <!-- 5MB -->
-	</beans:bean>
-
+	<!-- file Upload -->
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">        
+        <beans:property name="maxUploadSize" value="5242880" /> <!-- 5MB -->
+    </beans:bean>
+	
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

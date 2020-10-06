@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<!--  alias 는 별칭! -->
 		<typeAlias type="com.koreait.matzip.user.model.UserVO" alias="UserVO" />
 		<typeAlias type="com.koreait.matzip.user.model.UserDMI" alias="UserDMI" />
 		<typeAlias type="com.koreait.matzip.user.model.UserPARAM" alias="UserPARAM" />

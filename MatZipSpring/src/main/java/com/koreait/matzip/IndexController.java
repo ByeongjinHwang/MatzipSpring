@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 	
 	@RequestMapping("/")
-	public String index(HttpServletRequest req) {
+	public String index(HttpServletRequest req) {		
 		if(Const.realPath == null) {
 			Const.realPath = req.getServletContext().getRealPath("");
 		}

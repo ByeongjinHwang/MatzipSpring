@@ -7,8 +7,6 @@ public class RestPARAM extends RestVO {
 	private double ne_lng;
 	private int seq;
 	private String menu_pic;
-
-	
 	
 	public String getMenu_pic() {
 		return menu_pic;
@@ -22,14 +20,6 @@ public class RestPARAM extends RestVO {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	public int getCnt_Favorite() {
-		return cnt_Favorite;
-	}
-	public void setCnt_Favorite(int cnt_Favorite) {
-		this.cnt_Favorite = cnt_Favorite;
-	}
-	private int cnt_Favorite;
-	
 	public double getSw_lat() {
 		return sw_lat;
 	}
