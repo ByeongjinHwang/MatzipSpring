@@ -2,12 +2,6 @@
 
 # 맛집 등록 사이트 "Matzip"
 
-### List
-[1. Web Outline](#Web-Outline)<br/>
-[2. Project DATE](#Project-DATE)<br/>
-[3. Web Preview](#Web-Preview)<br/>
-[4. Developer Tools](#Developer-Tools)<br/>
-
 ### Web Outline
 
 - 사용자가 원하는 맛집을 직접 등록하여 공유 할 수 있는 사이트</br>
