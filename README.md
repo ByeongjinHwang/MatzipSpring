@@ -23,7 +23,7 @@
 
 | Planning | Data-base | Front-end  | Back-end           | API          | Server        |
 | -------- | --------- | ---------- | ------------------ | ------------ | ------------- |
-|          | Maria DB  | HTML+CSS   | Eclips IDE         | kakao map    | Apache Tomcat |
+|          | Maria DB  | HTML+CSS   | Eclips IDE         | Kakao map    | Apache Tomcat |
 |          |           | Javascript | Spring Tool Suite  |              |               |
 |          |           | jQuery     | JDK                |              |               |
 |          |           | Ajax       | Maven              |              |               |
