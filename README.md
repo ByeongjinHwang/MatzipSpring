@@ -16,7 +16,7 @@
 
 ### Web Preview
 
-유투브 주소
+https://www.youtube.com/watch?v=YNDQ7SszyDs
 
 
 ### Developer Tools
